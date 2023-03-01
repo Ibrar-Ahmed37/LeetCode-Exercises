@@ -8,7 +8,7 @@ const longestSubstring = (s) =>{
     let windowLength = 0;
     for( let i=0; i<s.length; i++){
         if(hashMap.has(s[i])){
-            if(hashMap.get(s[i])+1>=startIndex)
+            if(hashMap.get(s[i])+1>=startIndex) //this check is very imp this is for the 'abba' case where the SI gets greater and then you dont have to go back to the start index
             {
                 startIndex = hashMap.get(s[i])+1;
             }
