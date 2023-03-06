@@ -13,19 +13,19 @@
 // Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
 // Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
 
-//Approach: 
+//Approach: at any element, get the cheapest price till that element and then calculate currentprice by (price-CP)
+//and maintain a maxProfit which will calculate between the new currentprice and the previous maxprofit
 const buyAndSellStocks = (prices) => {
     let maxProfit = 0; 
-    let min =prices[0];
+    let cheapestPrice =prices[0];
     for(let i= 0; i<prices.length; i++){
         const price = prices[i];
-        if(price-min>=maxProfit){
-            maxProfit = price-min;
-        }
-        else if(price-min>=0)
-            min =  price[i];
+        if(price<cheapestPrice)
+            cheapestPrice = price;
+        currentPrice = price - cheapestPrice;
+        maxProfit = Math.max(maxProfit,currentPrice)
     }
     return maxProfit;
 }
 
-console.log(buyAndSellStocks([7,1,5,3,6,4]));
+console.log(buyAndSellStocks([2,4,1]));
