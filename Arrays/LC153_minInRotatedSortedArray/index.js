@@ -7,34 +7,33 @@
 // Given the sorted rotated array nums of unique elements, return the minimum element of this array.
 
 // You must write an algorithm that runs in O(log n) time.
+
+//Approach: to achieve that in O(logn) we have to use binary search algo (beneficial to do when something is already sorted)
+//so if the arr[0]<arr[lastelement], simply return first element,i.e its not rotated else
+// start from 
 const minInRotatedSortedArray = (arr) => {
-    //if sorted then return first value(0th) of array
-    let min = arr[0]; 
+    if(arr.length===1)
+        return arr[0]
     if(arr[0]<arr[arr.length-1])
-        return min;
+        return arr[0];
     let left = 0;
     let right = arr.length - 1;
-    while(left<right){
-        mid = Math.floor((left + right) /2);
-        console.log("mid "+mid);
-        console.log("arr[mid] "+arr[mid] + " and arr[left] "+arr[left])
-        if(arr[mid] > arr[left]){
-            left = mid;
-        }
-        else if( arr[mid]<arr[left] )
-        {
-            console.log("here"+arr[mid])
-            min = arr[mid];
-            right = mid;
-        }
-        else{
-            console.log('in here')
-            min=arr[right];
-            left++;
-        }
+    while(left<=right){
+        const mid = Math.floor((left + right) /2);
+        let midVal = arr[mid];
+        let rightofMid = arr[mid+1];
+        let leftofMid = arr[mid-1];
+
+        if(rightofMid<midVal)
+            return rightofMid;
+        else if(leftofMid>midVal)
+            return midVal;
+        
+        if(midVal>arr[left])
+            left = mid+1;
+        else 
+            right= mid-1;
     }
-    console.log('sfdds')
-    return min;
 }
 
-console.log(minInRotatedSortedArray([4,5,6,7,1,2,3]));
+console.log(minInRotatedSortedArray([9,10,15,0,3,4,5,6]));

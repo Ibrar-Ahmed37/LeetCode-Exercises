@@ -19,7 +19,9 @@
 
 // Approach : i have used the helper function of findInflectionPoint(which gives the min number)
 //and then used it to do binary search on kinda two sorted arrays ,to have the 
-//Time complexity of O(logn)
+
+//Time Complexity : O(logn)
+//Space Complexity : O(1)
 const findInflectionPoint = (arr) => {
     if(arr.length===1 || arr[0]<arr[arr.length-1])
         return 0;
